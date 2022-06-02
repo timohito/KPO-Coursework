@@ -1,0 +1,29 @@
+﻿<Window x:Class="UniversityAllExpelledWorkerView.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityAllExpelledWorkerView" xmlns:wfr="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        Title="Отчёт" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Margin="10">С</Label>
+            <DatePicker x:Name="DatePickerFrom" Margin="10"/>
+            <Label Margin="10">по</Label>
+            <DatePicker x:Name="DatePickerTo" Margin="10"/>
+            <Button x:Name="Button_Make" Margin="10" Click="Button_Make_Click">Сформировать</Button>
+            <Button x:Name="Button_ToPDF" Margin="10" Click="Button_ToPDF_Click">В PDF</Button>
+            <Button x:Name="Button_ToMail" Margin="10" Click="Button_ToMail_Click">На почту</Button>
+        </StackPanel>
+        <DataGrid x:Name="DataGridReport" MaxHeight="500">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дисциплина" Binding="{Binding Path=SubjectName}" Width="0.85*"/>
+                <DataGridTextColumn Header="План" Binding="{Binding Path=EducationPlanName}" Width="0.85*"/>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding Path=DateStart, StringFormat=dd/MM/yyyy}" Width="0.5*"/>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding Path=DateEnd, StringFormat=dd/MM/yyyy}" Width="0.5*"/>
+                <DataGridTextColumn Header="Студент" Binding="{Binding Path=GroupName}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>

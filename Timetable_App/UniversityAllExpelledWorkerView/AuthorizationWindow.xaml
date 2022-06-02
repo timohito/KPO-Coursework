@@ -1,0 +1,30 @@
+﻿<Window x:Class="UniversityAllExpelledWorkerView.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UniversityAllExpelledWorkerView"
+        mc:Ignorable="d"
+        Title="Авторизация" MinHeight="170" MinWidth="230" d:DesignHeight="170" Width="230">
+    <StackPanel Margin="20" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel HorizontalAlignment="Stretch">
+                <Label>Логин</Label>
+                <Label>Пароль</Label>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="4">
+                    <TextBox HorizontalAlignment="Stretch" MinWidth="100" Name="TextBoxLogin"></TextBox>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="4">
+                    <PasswordBox HorizontalAlignment="Stretch" MinWidth="100" Name="TextBoxPassword"></PasswordBox>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="10" Padding="5" Name="ButtonEnter" Click="ButtonEnter_Click">Войти</Button>
+            <Button Margin="10" Padding="5" Name="ButtonCancel" Click="ButtonCancel_Click">Отмена</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
