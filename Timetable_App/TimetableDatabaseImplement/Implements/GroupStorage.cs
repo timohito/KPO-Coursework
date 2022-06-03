@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TimetableBusinessLogic.BindingModels;
 using TimetableBusinessLogic.Interfaces;
 using TimetableBusinessLogic.ViewModels;
@@ -9,24 +11,22 @@ using TimetableDatabaseImplement.Models;
 
 namespace TimetableDatabaseImplement.Implements
 {
-    public class DenearyStorage : IDenearyStorage
+    public class GroupStorage : IGroupStorage
     {
-        public List<DenearyViewModel> GetFullList()
+        public List<GroupViewModel> GetFullList()
         {
             using (var context = new TimetableDatabase())
             {
-                return context.Denearies
-                .Select(rec => new DenearyViewModel
+                return context.Groups
+                .Select(rec => new GroupViewModel
                 {
                     Id = rec.Id,
-                    Login = rec.Login,
                     Name = rec.Name,
-                    Email = rec.Email,
-                    Password = rec.Password
+                    DenearyId = rec.DenearyId
                 }).ToList();
             }
         }
-        public List<DenearyViewModel> GetFilteredList(DenearyBindingModel model)
+        public List<GroupViewModel> GetFilteredList(GroupBindingModel model)
         {
             if (model == null)
             {
@@ -34,20 +34,19 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                return context.Denearies
-                .Where(rec => rec.Login == model.Login && rec.Password == model.Password)
-                .Select(rec => new DenearyViewModel
+                return context.Groups
+                .Include(rec => rec.Deneary)
+                .Where(rec => rec.DenearyId == model.DenearyId)
+                .Select(rec => new GroupViewModel
                 {
                     Id = rec.Id,
-                    Login = rec.Login,
                     Name = rec.Name,
-                    Email = rec.Email,
-                    Password = rec.Password
+                    DenearyId = rec.DenearyId
                 })
                 .ToList();
             }
         }
-        public DenearyViewModel GetElement(DenearyBindingModel model)
+        public GroupViewModel GetElement(GroupBindingModel model)
         {
             if (model == null)
             {
@@ -55,33 +54,31 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                var Deneary = context.Denearies
-                .FirstOrDefault(rec => rec.Login == model.Login || rec.Id == model.Id);
-                return Deneary != null ?
-                new DenearyViewModel
+                var Group = context.Groups
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.Name == model.Name);
+                return Group != null ?
+                new GroupViewModel
                 {
-                    Id = Deneary.Id,
-                    Login = Deneary.Login,
-                    Name = Deneary.Name,
-                    Email = Deneary.Email,
-                    Password = Deneary.Password,
+                    Id = Group.Id,
+                    Name = Group.Name,
+                    DenearyId = Group.DenearyId                   
                 } :
                 null;
             }
         }
-        public void Insert(DenearyBindingModel model)
+        public void Insert(GroupBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                context.Denearies.Add(CreateModel(model, new Deneary()));
+                context.Groups.Add(CreateModel(model, new Group()));
                 context.SaveChanges();
             }
         }
-        public void Update(DenearyBindingModel model)
+        public void Update(GroupBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                var element = context.Denearies.FirstOrDefault(rec => rec.Id == model.Id);
+                var element = context.Groups.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element == null)
                 {
                     throw new Exception("Элемент не найден");
@@ -90,14 +87,14 @@ namespace TimetableDatabaseImplement.Implements
                 context.SaveChanges();
             }
         }
-        public void Delete(DenearyBindingModel model)
+        public void Delete(GroupBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                Deneary element = context.Denearies.FirstOrDefault(rec => rec.Id == model.Id);
+                Group element = context.Groups.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element != null)
                 {
-                    context.Denearies.Remove(element);
+                    context.Groups.Remove(element);
                     context.SaveChanges();
                 }
                 else
@@ -106,13 +103,11 @@ namespace TimetableDatabaseImplement.Implements
                 }
             }
         }
-        private Deneary CreateModel(DenearyBindingModel model, Deneary Deneary)
+        private Group CreateModel(GroupBindingModel model, Group Group)
         {
-            Deneary.Name = model.Name;
-            Deneary.Password = model.Password;
-            Deneary.Login = model.Login;
-            Deneary.Email = model.Email;
-            return Deneary;
+            Group.Name = model.Name;
+            Group.DenearyId = model.DenearyId;
+            return Group;
         }
     }
 }

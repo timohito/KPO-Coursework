@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TimetableBusinessLogic.BindingModels;
-using TimetableBusinessLogic.Interfaces;
 using TimetableBusinessLogic.ViewModels;
 using TimetableDatabaseImplement.Models;
 
 namespace TimetableDatabaseImplement.Implements
 {
-    public class DenearyStorage : IDenearyStorage
+    public class ClassroomStorage
     {
-        public List<DenearyViewModel> GetFullList()
+        public List<ClassroomViewModel> GetFullList()
         {
             using (var context = new TimetableDatabase())
             {
-                return context.Denearies
-                .Select(rec => new DenearyViewModel
+                return context.Classrooms
+                .Select(rec => new ClassroomViewModel
                 {
                     Id = rec.Id,
-                    Login = rec.Login,
-                    Name = rec.Name,
-                    Email = rec.Email,
-                    Password = rec.Password
+                    Number = rec.Number
                 }).ToList();
             }
         }
-        public List<DenearyViewModel> GetFilteredList(DenearyBindingModel model)
+        public List<ClassroomViewModel> GetFilteredList(ClassroomBindingModel model)
         {
             if (model == null)
             {
@@ -34,20 +31,17 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                return context.Denearies
+                return context.Classrooms
                 .Where(rec => rec.Login == model.Login && rec.Password == model.Password)
-                .Select(rec => new DenearyViewModel
+                .Select(rec => new ClassroomViewModel
                 {
                     Id = rec.Id,
-                    Login = rec.Login,
-                    Name = rec.Name,
-                    Email = rec.Email,
-                    Password = rec.Password
+                    Number = rec.Number
                 })
                 .ToList();
             }
         }
-        public DenearyViewModel GetElement(DenearyBindingModel model)
+        public ClassroomViewModel GetElement(ClassroomBindingModel model)
         {
             if (model == null)
             {
@@ -55,33 +49,30 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                var Deneary = context.Denearies
+                var Classroom = context.Denearies
                 .FirstOrDefault(rec => rec.Login == model.Login || rec.Id == model.Id);
-                return Deneary != null ?
-                new DenearyViewModel
+                return Classroom != null ?
+                new ClassroomViewModel
                 {
-                    Id = Deneary.Id,
-                    Login = Deneary.Login,
-                    Name = Deneary.Name,
-                    Email = Deneary.Email,
-                    Password = Deneary.Password,
+                    Id = rec.Id,
+                    Number = rec.Number
                 } :
                 null;
             }
         }
-        public void Insert(DenearyBindingModel model)
+        public void Insert(ClassroomBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                context.Denearies.Add(CreateModel(model, new Deneary()));
+                context.Classrooms.Add(CreateModel(model, new Classroom()));
                 context.SaveChanges();
             }
         }
-        public void Update(DenearyBindingModel model)
+        public void Update(ClassroomBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                var element = context.Denearies.FirstOrDefault(rec => rec.Id == model.Id);
+                var element = context.Classrooms.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element == null)
                 {
                     throw new Exception("Элемент не найден");
@@ -90,11 +81,11 @@ namespace TimetableDatabaseImplement.Implements
                 context.SaveChanges();
             }
         }
-        public void Delete(DenearyBindingModel model)
+        public void Delete(ClassroomBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                Deneary element = context.Denearies.FirstOrDefault(rec => rec.Id == model.Id);
+                Classroom element = context.Classrooms.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element != null)
                 {
                     context.Denearies.Remove(element);
@@ -106,13 +97,12 @@ namespace TimetableDatabaseImplement.Implements
                 }
             }
         }
-        private Deneary CreateModel(DenearyBindingModel model, Deneary Deneary)
+        private Classroom CreateModel(ClassroomBindingModel model, Classroom Classroom)
         {
-            Deneary.Name = model.Name;
-            Deneary.Password = model.Password;
-            Deneary.Login = model.Login;
-            Deneary.Email = model.Email;
-            return Deneary;
+            Classroom.Number = model.Number;
+
+            return Classroom;
         }
     }
+}
 }
