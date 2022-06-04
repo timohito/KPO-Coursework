@@ -12,5 +12,6 @@ namespace TimetableBusinessLogic.Interfaces
 		void Insert(SubjectBindingModel model);
 		void Update(SubjectBindingModel model);
 		void Delete(SubjectBindingModel model);
+		void BindingLector(int LId, int SId);
 	}
 }

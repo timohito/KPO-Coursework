@@ -48,9 +48,13 @@ namespace TimetableBusinessLogic.BusinessLogics
             var element = _subjectStorage.GetElement(new SubjectBindingModel { Id = model.Id });
             if (element == null)
             {
-                throw new Exception("Элемент не найден");
+                throw new Exception("Предмет не найден");
             }
             _subjectStorage.Delete(model);
+        }
+        public void BindingLector(int LId, int SId)
+        {
+            _subjectStorage.BindingLector(LId, SId);
         }
     }
 }

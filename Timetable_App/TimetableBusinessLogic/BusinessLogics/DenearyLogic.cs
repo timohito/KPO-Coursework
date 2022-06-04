@@ -30,10 +30,10 @@ namespace TimetableBusinessLogic.BusinessLogics
         {
             var element = _denearyStorage.GetElement(new DenearyBindingModel
             {
-                Email = model.Email,
+                //Email = model.Email,
                 Login = model.Login,
-                Name = model.Name,
-                Password = model.Password
+                //Name = model.Name,
+                //Password = model.Password
             });
             if (element != null && element.Id != model.Id)
             {

@@ -4,26 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimetableBusinessLogic.BindingModels;
+using TimetableBusinessLogic.Interfaces;
 using TimetableBusinessLogic.ViewModels;
 using TimetableDatabaseImplement.Models;
 
 namespace TimetableDatabaseImplement.Implements
 {
-    public class ClassroomStorage
+    public class LectorStorage : ILectorStorage
     {
-        public List<ClassroomViewModel> GetFullList()
+        public List<LectorViewModel> GetFullList()
         {
             using (var context = new TimetableDatabase())
             {
-                return context.Classrooms
-                .Select(rec => new ClassroomViewModel
+                return context.Lectors
+                .Select(rec => new LectorViewModel
                 {
                     Id = rec.Id,
-                    Number = rec.Number
+                    Name = rec.Name,                    
                 }).ToList();
             }
         }
-        public List<ClassroomViewModel> GetFilteredList(ClassroomBindingModel model)
+        public List<LectorViewModel> GetFilteredList(LectorBindingModel model)
         {
             if (model == null)
             {
@@ -31,17 +32,17 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                return context.Classrooms
-                .Where(rec => rec.Id == model.Id)
-                .Select(rec => new ClassroomViewModel
+                return context.Lectors
+                //.Where(rec => rec.DepartmentLogin == model.DepartmentLogin)
+                .Select(rec => new LectorViewModel
                 {
                     Id = rec.Id,
-                    Number = rec.Number
+                    Name = rec.Name,
                 })
                 .ToList();
             }
         }
-        public ClassroomViewModel GetElement(ClassroomBindingModel model)
+        public LectorViewModel GetElement(LectorBindingModel model)
         {
             if (model == null)
             {
@@ -49,30 +50,30 @@ namespace TimetableDatabaseImplement.Implements
             }
             using (var context = new TimetableDatabase())
             {
-                var Classroom = context.Classrooms
-                .FirstOrDefault(rec => rec.Id == model.Id);
-                return Classroom != null ?
-                new ClassroomViewModel
+                var Lector = context.Lectors
+                .FirstOrDefault(rec => rec.Name == model.Name || rec.Id == model.Id);
+                return Lector != null ?
+                new LectorViewModel
                 {
-                    Id = Classroom.Id,
-                    Number = Classroom.Number
+                    Id = Lector.Id,
+                    Name = Lector.Name,                   
                 } :
                 null;
             }
         }
-        public void Insert(ClassroomBindingModel model)
+        public void Insert(LectorBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                context.Classrooms.Add(CreateModel(model, new Classroom()));
+                context.Lectors.Add(CreateModel(model, new Lector()));
                 context.SaveChanges();
             }
         }
-        public void Update(ClassroomBindingModel model)
+        public void Update(LectorBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                var element = context.Classrooms.FirstOrDefault(rec => rec.Id == model.Id);
+                var element = context.Lectors.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element == null)
                 {
                     throw new Exception("Элемент не найден");
@@ -81,14 +82,14 @@ namespace TimetableDatabaseImplement.Implements
                 context.SaveChanges();
             }
         }
-        public void Delete(ClassroomBindingModel model)
+        public void Delete(LectorBindingModel model)
         {
             using (var context = new TimetableDatabase())
             {
-                Classroom element = context.Classrooms.FirstOrDefault(rec => rec.Id == model.Id);
+                Lector element = context.Lectors.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element != null)
                 {
-                    context.Classrooms.Remove(element);
+                    context.Lectors.Remove(element);
                     context.SaveChanges();
                 }
                 else
@@ -97,12 +98,10 @@ namespace TimetableDatabaseImplement.Implements
                 }
             }
         }
-        private Classroom CreateModel(ClassroomBindingModel model, Classroom Classroom)
+        private Lector CreateModel(LectorBindingModel model, Lector Lector)
         {
-            Classroom.Number = model.Number;
-
-            return Classroom;
+            Lector.Name = model.Name;
+            return Lector;
         }
     }
 }
-

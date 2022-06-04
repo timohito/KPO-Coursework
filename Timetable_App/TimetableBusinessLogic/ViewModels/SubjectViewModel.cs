@@ -10,6 +10,6 @@ namespace TimetableBusinessLogic.ViewModels
 		public string Name { get; set; }
 		[DisplayName("Количество часов")]
 		public int Hours { get; set; }
-		public int DenearyId { get; set; }
+		public Dictionary<int, string> LectorSubject { get; set; }
 	}
 }
