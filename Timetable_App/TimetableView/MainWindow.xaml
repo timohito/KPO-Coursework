@@ -1,0 +1,26 @@
+﻿<Window x:Class="TimetableView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimetableView"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="White" Height="20">
+            <MenuItem x:Name="MenuItemGroups" Header="Группы" Click="MenuItemGroups_Click"/>
+            <MenuItem x:Name="MenuItemClassrooms" Header="Аудитории" Click="MenuItemClassrooms_Click" />
+            <MenuItem x:Name="MenuItemSubjects" Header="Предметы" Click="MenuItemSubjects_Click" />
+            <MenuItem x:Name="MenuItemLectors" Header="Преподаватели" Click="MenuItemLectors_Click" />
+            <MenuItem x:Name="MenuBindingLectors" Header="Привязка преподавателей и предметов" Click="MenuBindingLectors_Click"/>
+            <MenuItem x:Name="MenuTimetable" Header="Расписание" Click="MenuTimetable_Click"/>
+        </Menu>
+        <StackPanel Grid.Row="1">
+            <Label Margin="10" Height="30" Name="labelUser"></Label>
+        </StackPanel>
+    </Grid>
+</Window>
