@@ -9,51 +9,52 @@ namespace TimetableBusinessLogic.BusinessLogics
 {
     public class TimetableLogic
     {
-		private readonly ITimetableStorage _educationPlanStorage;
-		public TimetableLogic(ITimetableStorage educationPlanStorage)
+		private readonly ITimetableStorage _timetableStorage;
+		public TimetableLogic(ITimetableStorage timetableStorage)
 		{
-			_educationPlanStorage = educationPlanStorage;
+			_timetableStorage = timetableStorage;
 		}
 		public List<TimetableViewModel> Read(TimetableBindingModel model)
 		{
 			if (model == null)
 			{
-				return _educationPlanStorage.GetFullList();
+				return _timetableStorage.GetFullList();
 			}
 			if (model.Id.HasValue)
 			{
-				return new List<TimetableViewModel> { _educationPlanStorage.GetElement(model) };
+				return new List<TimetableViewModel> { _timetableStorage.GetElement(model) };
 			}
-			return _educationPlanStorage.GetFilteredList(model);
+			return _timetableStorage.GetFilteredList(model);
 		}
 		public void CreateOrUpdate(TimetableBindingModel model)
 		{						
-			var element = _educationPlanStorage.GetElement(new TimetableBindingModel
+			var element = _timetableStorage.GetElement(new TimetableBindingModel
 			{
-				Name = model.Name,
-				Classroom = model.Classroom
+				GroupId = model.GroupId,
+				ClassroomId = model.ClassroomId,
+				LectorSubjectId = model.LectorSubjectId
 			});
 			if (element != null && element.Id != model.Id)
 			{
-				throw new Exception("Уже есть план с такими данными");
+				throw new Exception("Уже есть расписание с такими данными");
 			}
 			if (model.Id.HasValue)
 			{
-				_educationPlanStorage.Update(model);
+				_timetableStorage.Update(model);
 			}
 			else
 			{
-				_educationPlanStorage.Insert(model);
+				_timetableStorage.Insert(model);
 			}
 		}
 		public void Delete(TimetableBindingModel model)
 		{
-			var element = _educationPlanStorage.GetElement(new TimetableBindingModel { Id = model.Id });
+			var element = _timetableStorage.GetElement(new TimetableBindingModel { Id = model.Id });
 			if (element == null)
 			{
 				throw new Exception("Элемент не найден");
 			}
-			_educationPlanStorage.Delete(model);
+			_timetableStorage.Delete(model);
 		}
     }
 }

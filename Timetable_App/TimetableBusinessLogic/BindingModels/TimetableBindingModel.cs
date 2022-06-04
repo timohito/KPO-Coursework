@@ -8,14 +8,10 @@ namespace TimetableBusinessLogic.BindingModels
     {
         public int? Id { get; set; }
 
-        public string Name { get; set; }
-
-        public int SubjectId { get; set; }
-
-        public int LectorId { get; set; }
+        public int LectorSubjectId { get; set; }
 
         public int GroupId { get; set; }
 
-        public int Classroom { get; set; }
+        public int ClassroomId { get; set; }
     }
 }
