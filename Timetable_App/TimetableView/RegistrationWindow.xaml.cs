@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,7 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TimetableBusinessLogic.BusinessLogics
+using TimetableBusinessLogic.BindingModels;
+using TimetableBusinessLogic.BusinessLogics;
 using Unity;
 
 namespace TimetableView
@@ -95,9 +97,6 @@ namespace TimetableView
                 MessageBox.Show("Поздравляем! Вы зарегистрированы.", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
-                var window = Container.Resolve<MainWindow>();
-                window.Login = TextBoxDenearyName.Text;
-                window.ShowDialog();
             }
             catch (Exception ex)
             {

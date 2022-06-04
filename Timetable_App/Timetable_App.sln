@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimetableDatabaseImplement"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimetableBusinessLogic", "TimetableBusinessLogic\TimetableBusinessLogic.csproj", "{09569139-08EB-4A35-AB54-43567A10F172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimetableView", "TimetableView\TimetableView.csproj", "{B4D29F18-0314-4059-A0DC-60365CCA89B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimetableView", "TimetableView\TimetableView.csproj", "{CF1A104D-CCFF-454C-A57C-6C336BFE831B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{09569139-08EB-4A35-AB54-43567A10F172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09569139-08EB-4A35-AB54-43567A10F172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09569139-08EB-4A35-AB54-43567A10F172}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4D29F18-0314-4059-A0DC-60365CCA89B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4D29F18-0314-4059-A0DC-60365CCA89B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4D29F18-0314-4059-A0DC-60365CCA89B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4D29F18-0314-4059-A0DC-60365CCA89B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1A104D-CCFF-454C-A57C-6C336BFE831B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1A104D-CCFF-454C-A57C-6C336BFE831B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1A104D-CCFF-454C-A57C-6C336BFE831B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1A104D-CCFF-454C-A57C-6C336BFE831B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

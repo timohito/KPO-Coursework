@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimetableBusinessLogic.BindingModels;
+using TimetableBusinessLogic.Interfaces;
 using TimetableBusinessLogic.ViewModels;
 using TimetableDatabaseImplement.Models;
 
 namespace TimetableDatabaseImplement.Implements
 {
-    public class ClassroomStorage
+    public class ClassroomStorage : IClassroomStorage
     {
         public List<ClassroomViewModel> GetFullList()
         {

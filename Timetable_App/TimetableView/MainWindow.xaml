@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimetableView"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" Loaded="MainWindow_Loaded"
+       Title="Главная форма" MinHeight="450" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -20,7 +19,7 @@
             <MenuItem x:Name="MenuTimetable" Header="Расписание" Click="MenuTimetable_Click"/>
         </Menu>
         <StackPanel Grid.Row="1">
-            <Label Margin="10" Height="30" Name="labelUser"></Label>
+            <Label Margin="10" Height="30" Name="labelDeneary"></Label>
         </StackPanel>
     </Grid>
 </Window>
