@@ -54,23 +54,19 @@ namespace TimetableView
         private void MenuItemSubjects_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<SubjectsWindow>();
-            window.Id = (int)id;
             window.ShowDialog();
         }
 
         private void MenuItemLectors_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<LectorsWindow>();
-            //window.Id = (int)id;
-            //window.ShowDialog();
+            var window = Container.Resolve<LectorsWindow>();
+            window.ShowDialog();
         }
 
         private void MenuBindingLectors_Click(object sender, RoutedEventArgs e)
         {
             //var window = Container.Resolve<BindingLectorsWindow>();
-            //window.DenearyId = (int)id;
             //window.ShowDialog();
-
         }
 
         private void MenuTimetable_Click(object sender, RoutedEventArgs e)

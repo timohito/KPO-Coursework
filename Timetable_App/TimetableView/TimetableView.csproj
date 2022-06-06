@@ -197,6 +197,12 @@
     <Compile Include="GroupWindow.xaml.cs">
       <DependentUpon>GroupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LectorsWindow.xaml.cs">
+      <DependentUpon>LectorsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LectorWindow.xaml.cs">
+      <DependentUpon>LectorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
@@ -227,6 +233,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LectorsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LectorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

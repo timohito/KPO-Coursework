@@ -21,29 +21,27 @@ using Unity;
 namespace TimetableView
 {
     /// <summary>
-    /// Логика взаимодействия для SubjectsWindow.xaml
+    /// Логика взаимодействия для LectorsWindow.xaml
     /// </summary>
-    public partial class SubjectsWindow : Window
+    public partial class LectorsWindow : Window
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly SubjectLogic logic;
-
-        public SubjectsWindow(SubjectLogic logic)
+        private readonly LectorLogic logic;
+        public LectorsWindow(LectorLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
         }
 
-
         private void ButtonUpd_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid.SelectedCells.Count != 0)
             {
-                var window = Container.Resolve<SubjectWindow>();
-                SubjectViewModel record = (SubjectViewModel)dataGrid.SelectedCells[0].Item;
-                window.Id = (int)record.Id;
+                var window = Container.Resolve<LectorWindow>();
+                LectorViewModel record = (LectorViewModel)dataGrid.SelectedCells[0].Item;
+                window.Id = record.Id;
                 if (window.ShowDialog().Value)
                 {
                     LoadData();
@@ -57,10 +55,10 @@ namespace TimetableView
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    int id = (int)((SubjectViewModel)dataGrid.SelectedCells[0].Item).Id;
+                    int id = ((LectorViewModel)dataGrid.SelectedCells[0].Item).Id;
                     try
                     {
-                        logic.Delete(new SubjectBindingModel { Id = id });
+                        logic.Delete(new LectorBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -78,7 +76,7 @@ namespace TimetableView
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<SubjectWindow>();
+            var window = Container.Resolve<LectorWindow>();
 
             if (window.ShowDialog().Value)
             {
@@ -86,7 +84,7 @@ namespace TimetableView
             }
         }
 
-        private void SubjectsWindow_Loaded(object sender, RoutedEventArgs e)
+        private void LectorsWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
@@ -153,3 +151,4 @@ namespace TimetableView
         }
     }
 }
+
