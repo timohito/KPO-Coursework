@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TimetableBusinessLogic.ViewModels
 {
@@ -7,5 +8,7 @@ namespace TimetableBusinessLogic.ViewModels
 		public int Id { get; set; }
 		[DisplayName("Имя")]
 		public string Name { get; set; }
+
+		public Dictionary<int, string> Subjects { get; set; }
 	}
 }

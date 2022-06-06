@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace TimetableDatabaseImplement.Implements
                 .Select(rec => new LectorViewModel
                 {
                     Id = rec.Id,
-                    Name = rec.Name,                    
+                    Name = rec.Name,
                 }).ToList();
             }
         }
@@ -51,12 +52,16 @@ namespace TimetableDatabaseImplement.Implements
             using (var context = new TimetableDatabase())
             {
                 var Lector = context.Lectors
-                .FirstOrDefault(rec => rec.Name == model.Name || rec.Id == model.Id);
+                .Include(rec => rec.LectorSubjects)
+                .ThenInclude(rec => rec.Subject)
+                .FirstOrDefault(rec => rec.Id == model.Id);
                 return Lector != null ?
                 new LectorViewModel
                 {
                     Id = Lector.Id,
-                    Name = Lector.Name,                   
+                    Name = Lector.Name,
+                    Subjects = Lector.LectorSubjects
+                    .ToDictionary(recSS => recSS.SubjectId, recSS => recSS.Subject.Name)
                 } :
                 null;
             }
@@ -102,6 +107,21 @@ namespace TimetableDatabaseImplement.Implements
         {
             Lector.Name = model.Name;
             return Lector;
+        }
+
+        public void BindingSubject(int LId, int SId)
+        {
+            using (var context = new TimetableDatabase())
+            {
+                context.LectorSubjects.Add(new LectorSubject
+                {
+                    LectorId = LId,
+                    SubjectId = SId,
+                });
+                context.SaveChanges();
+
+            }
+
         }
     }
 }

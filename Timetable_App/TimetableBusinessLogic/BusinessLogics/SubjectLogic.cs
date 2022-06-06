@@ -53,9 +53,5 @@ namespace TimetableBusinessLogic.BusinessLogics
             }
             _subjectStorage.Delete(model);
         }
-        public void BindingLector(int LId, int SId)
-        {
-            _subjectStorage.BindingLector(LId, SId);
-        }
     }
 }

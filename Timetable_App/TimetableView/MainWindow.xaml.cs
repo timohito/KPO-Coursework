@@ -65,8 +65,8 @@ namespace TimetableView
 
         private void MenuBindingLectors_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<BindingLectorsWindow>();
-            //window.ShowDialog();
+            var window = Container.Resolve<BindingLectorWindow>();
+            window.ShowDialog();
         }
 
         private void MenuTimetable_Click(object sender, RoutedEventArgs e)
