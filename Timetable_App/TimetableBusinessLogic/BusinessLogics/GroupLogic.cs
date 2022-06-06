@@ -30,7 +30,7 @@ namespace TimetableBusinessLogic.BusinessLogics
             return _groupStorage.GetFilteredList(model);
         }
 
-        public void CreateOrUpdate(GroupBindingModel model, bool isUpdating)
+        public void CreateOrUpdate(GroupBindingModel model)
         {
             var element = _groupStorage.GetElement(new GroupBindingModel { 
                 Id = model.Id,
@@ -40,13 +40,13 @@ namespace TimetableBusinessLogic.BusinessLogics
             {
                 throw new Exception("Уже есть такой студент");
             }
-            if (model.Id.HasValue && !isUpdating)
+            if (model.Id.HasValue)
             {
-                _groupStorage.Insert(model);
+                _groupStorage.Update(model);
             }
             else
             {
-                _groupStorage.Update(model);
+                _groupStorage.Insert(model);
             }
         }
 

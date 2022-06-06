@@ -40,35 +40,35 @@ namespace TimetableView
 
         private void MenuItemGroups_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowGroups>();
-            //window.Id = (int)id;
-            //window.ShowDialog();
+            var window = Container.Resolve<GroupsWindow>();
+            window.Id = (int)id;
+            window.ShowDialog();
         }
 
         private void MenuItemClassrooms_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowClassrooms>();
+            //var window = Container.Resolve<ClassroomsWindow>();
             //window.Id = (int)id;
             //window.ShowDialog();
 
         }
         private void MenuItemSubjects_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowSubjects>();
+            //var window = Container.Resolve<SubjectsWindow>();
             //window.Id = (int)id;
             //window.ShowDialog();
         }
 
         private void MenuItemLectors_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowLectors>();
+            //var window = Container.Resolve<LectorsWindow>();
             //window.Id = (int)id;
             //window.ShowDialog();
         }
 
         private void MenuBindingLectors_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowBindingLectors>();
+            //var window = Container.Resolve<BindingLectorsWindow>();
             //window.DenearyId = (int)id;
             //window.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace TimetableView
 
         private void MenuTimetable_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<WindowTimetable>();
+            //var window = Container.Resolve<TimetableWindow>();
             //window.ShowDialog();
         }
 
