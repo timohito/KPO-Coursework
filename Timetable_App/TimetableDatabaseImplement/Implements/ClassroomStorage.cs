@@ -51,7 +51,7 @@ namespace TimetableDatabaseImplement.Implements
             using (var context = new TimetableDatabase())
             {
                 var Classroom = context.Classrooms
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.Number == model.Number);
                 return Classroom != null ?
                 new ClassroomViewModel
                 {

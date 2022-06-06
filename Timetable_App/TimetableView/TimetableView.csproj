@@ -200,6 +200,12 @@
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SubjectsWindow.xaml.cs">
+      <DependentUpon>SubjectsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubjectWindow.xaml.cs">
+      <DependentUpon>SubjectWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,6 +243,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubjectsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

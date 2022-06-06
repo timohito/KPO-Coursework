@@ -61,7 +61,7 @@ namespace TimetableDatabaseImplement.Implements
                 var Subject = context.Subjects
                   .Include(rec => rec.LectorSubjects)
                   .ThenInclude(rec => rec.Lector)
-                  .FirstOrDefault(rec => rec.Id == model.Id);
+                  .FirstOrDefault(rec => rec.Id == model.Id || (rec.Name == model.Name && rec.Hours == model.Hours));
                 return Subject != null ?
                   new SubjectViewModel
                   {

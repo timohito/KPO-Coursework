@@ -33,12 +33,11 @@ namespace TimetableBusinessLogic.BusinessLogics
         public void CreateOrUpdate(GroupBindingModel model)
         {
             var element = _groupStorage.GetElement(new GroupBindingModel { 
-                Id = model.Id,
                 Name = model.Name
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть такой студент");
+                throw new Exception("Уже есть такая группа");
             }
             if (model.Id.HasValue)
             {

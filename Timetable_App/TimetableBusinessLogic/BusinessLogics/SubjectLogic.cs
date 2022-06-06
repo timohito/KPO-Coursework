@@ -28,11 +28,12 @@ namespace TimetableBusinessLogic.BusinessLogics
         {
             var element = _subjectStorage.GetElement(new SubjectBindingModel
             {
-                Name = model.Name
+                Name = model.Name,
+                Hours = model.Hours,
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть предмет с таким названием");
+                throw new Exception("Уже есть такой предмет");
             }
             if (model.Id.HasValue)
             {

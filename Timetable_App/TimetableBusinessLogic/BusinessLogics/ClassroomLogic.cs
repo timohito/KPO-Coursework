@@ -36,7 +36,7 @@ namespace TimetableBusinessLogic.BusinessLogics
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть деканат с такими данными");
+                throw new Exception("Уже есть такая аудитория");
             }
             if (model.Id.HasValue)
             {
