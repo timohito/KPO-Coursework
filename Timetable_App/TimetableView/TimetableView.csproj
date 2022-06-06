@@ -215,6 +215,12 @@
     <Compile Include="SubjectWindow.xaml.cs">
       <DependentUpon>SubjectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimetableLinesWindow.xaml.cs">
+      <DependentUpon>TimetableLinesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimetableLineWindow.xaml.cs">
+      <DependentUpon>TimetableLineWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,6 +278,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimetableLinesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimetableLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

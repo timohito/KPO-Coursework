@@ -71,8 +71,8 @@ namespace TimetableView
 
         private void MenuTimetable_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<TimetableWindow>();
-            //window.ShowDialog();
+            var window = Container.Resolve<TimetableLinesWindow>();
+            window.ShowDialog();
         }
 
 

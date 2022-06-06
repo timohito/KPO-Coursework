@@ -9,10 +9,15 @@ namespace TimetableBusinessLogic.ViewModels
     {
         public int? Id { get; set; }
         public int GroupId { get; set; }
+        public string GroupName { get; set; }
         public int ClassroomId { get; set; }
+        public string ClassroomNumber { get; set; }
         public int LectorSubjectId { get; set; }
+        public string LectorSubjectName { get; set; }
         public int LectorSubject_LectorId { get; set; }
+        public string LectorName { get; set; }
         public int LectorSubject_SubjectId { get; set; }
+        public string SubjectName { get; set; }
         public Dictionary<int, (string, int)> LectorSubjects { get; set; }
     }
 }

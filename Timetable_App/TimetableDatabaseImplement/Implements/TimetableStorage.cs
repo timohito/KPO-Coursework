@@ -33,6 +33,7 @@ namespace TimetableDatabaseImplement.Implements
                     GroupId = rec.GroupId,
                     LectorSubject_LectorId = rec.LectorSubject.LectorId,
                     LectorSubject_SubjectId = rec.LectorSubject.SubjectId,
+                    LectorName = rec.LectorSubject.Lector.Name //?
                 })
                 .ToList();
             }
