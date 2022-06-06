@@ -47,9 +47,8 @@ namespace TimetableView
 
         private void MenuItemClassrooms_Click(object sender, RoutedEventArgs e)
         {
-            //var window = Container.Resolve<ClassroomsWindow>();
-            //window.Id = (int)id;
-            //window.ShowDialog();
+            var window = Container.Resolve<ClassroomsWindow>();
+            window.ShowDialog();
 
         }
         private void MenuItemSubjects_Click(object sender, RoutedEventArgs e)
