@@ -76,6 +76,21 @@ namespace TimetableView
 
         private int subjectId;
 
+        public string Day
+        {
+            get { return (ComboBoxDay.SelectedItem as int?); }
+            set
+            {
+                day = value;
+            }
+        }
+
+        private int day;
+        
+
+        List<string> listDays = new List<string>() { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
+        List<int> listClasses = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+
         [Dependency]
         public IUnityContainer Container { get; set; }
 
@@ -131,7 +146,9 @@ namespace TimetableView
                     GroupId = GroupId,
                     LectorSubject_LectorId = LectorId,
                     LectorSubject_SubjectId = SubjectId,
-                    LectorSubjectId = LectorSubjectId
+                    LectorSubjectId = LectorSubjectId,
+                    Day = day,
+
                     //Class = 
                 });
                  
@@ -176,6 +193,9 @@ namespace TimetableView
             {
                 ComboBoxSubject.ItemsSource = listSubjects;
             }
+
+            ComboBoxDay.ItemsSource = listDays;
+            ComboBoxClass.ItemsSource = listClasses;
        
             if (id.HasValue)
             {
@@ -185,6 +205,7 @@ namespace TimetableView
                     ComboBoxGroups.SelectedItem = SetGroupValue(groupId);
                     ComboBoxClassrooms.SelectedItem = SetClassroomValue(classroomId);
                     ComboBoxSubject.SelectedItem = SetSubjectValue(subjectId);
+                    ComboBoxDay.SelectedItem = SetDayValue(day);
                     //дописать день и пару
                     var view = logicTimetable.Read(new TimetableBindingModel { Id = id })?[0];
                     if (view != null)
@@ -244,6 +265,33 @@ namespace TimetableView
                 {
                     return item as SubjectViewModel;
                 }
+            }
+            return null;
+        }
+
+        private int? SetDayValue(string value)
+        {
+            foreach (var item in ComboBoxDay.Items)
+            {
+                if (item as string == value)
+                {
+                    switch(item as string)
+                    {
+                        case "Понедельник":
+                            return 1;
+                        case "Вторник":
+                            return 2;
+                        case "Среда":
+                            return 3;
+                        case "Четверг":
+                            return 4;
+                        case "Пятница":
+                            return 5;
+                        case "Суббота":
+                            return 6;
+                    }
+                }
+
             }
             return null;
         }
