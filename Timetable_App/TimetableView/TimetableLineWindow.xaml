@@ -84,7 +84,7 @@
                         <ComboBox x:Name="ComboBoxDay" Margin="10">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}"/>
+                                    <TextBlock Text="{Binding Day}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
