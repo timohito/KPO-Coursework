@@ -14,7 +14,7 @@ namespace TimetableBusinessLogic.BindingModels
 
         public int LectorSubject_SubjectId { get; set; }
 
-        public int Day { get; set; }
+        public string Day { get; set; }
 
         public int Class { get; set; }
 

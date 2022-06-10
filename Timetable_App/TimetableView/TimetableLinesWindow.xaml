@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableView"
         mc:Ignorable="d"
-        Title="Расписание" MinHeight="180" MinWidth="270" Height="343" Width="650" Loaded="TimetableLines_Loaded">
+        Title="Расписание" MinHeight="180" MinWidth="270" Height="359" Width="749" Loaded="TimetableLines_Loaded">
     <Grid>
-        <DataGrid x:Name="DataGridPlans" HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="492" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
-        <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="516,66,0,0" Click="ButtonAdd_Click"/>
-        <Button x:Name="ButtonUpd" Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="516,104,0,0" Click="ButtonUpd_Click"/>
-        <Button x:Name="ButtonDel" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="516,143,0,0" Click="ButtonDel_Click"/>
-        <Button x:Name="ButtonRef" Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="516,186,0,0" Click="ButtonRef_Click"/>
+        <DataGrid x:Name="DataGridPlans" HorizontalAlignment="Left" Height="343" VerticalAlignment="Center" Width="588" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+        <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,152,0,0" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonUpd" Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,190,0,0" Click="ButtonUpd_Click"/>
+        <Button x:Name="ButtonDel" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,229,0,0" Click="ButtonDel_Click"/>
+        <Button x:Name="ButtonRef" Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,272,0,0" Click="ButtonRef_Click"/>
     </Grid>
 </Window>

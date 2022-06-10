@@ -32,6 +32,32 @@ namespace TimetableView
         public int Id { set { id = value; } }
         private int? id;
 
+        public string Day
+        {
+            get { return (ComboBoxDay.SelectedItem as string); }
+            set
+            {
+                day = value;
+            }
+        }
+
+        private string day;
+
+        public int Class
+        {
+            get { return (int)ComboBoxClass.SelectedItem; }
+            set
+            {
+                classs = value;
+            }
+        }
+
+        private int classs;
+
+
+        List<string> listDays = new List<string>() { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
+        List<int> listClasses = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+
         public int GroupId
         {
             get { return (ComboBoxGroups.SelectedItem as GroupViewModel).Id.Value; }
@@ -111,16 +137,16 @@ namespace TimetableView
                 MessageBox.Show("Выберите предмет", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //if (ComboBoxDay.SelectedValue == null)
-            //{
-            //    MessageBox.Show("Выберите день", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
-            //if (ComboBoxClass.SelectedValue == null)
-            //{
-            //    MessageBox.Show("Выберите номер пары", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
+            if (ComboBoxDay.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите день", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (ComboBoxClass.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите номер пары", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             try
             {
                 int LectorSubjectId = logicTimetable.FindLectorSubjectIdByForeignKeys(LectorId, SubjectId);/// как-то так...
@@ -131,8 +157,9 @@ namespace TimetableView
                     GroupId = GroupId,
                     LectorSubject_LectorId = LectorId,
                     LectorSubject_SubjectId = SubjectId,
-                    LectorSubjectId = LectorSubjectId
-                    //Class = 
+                    LectorSubjectId = LectorSubjectId,
+                    Day = Day,
+                    Class = Class,
                 });
                  
 
@@ -176,7 +203,9 @@ namespace TimetableView
             {
                 ComboBoxSubject.ItemsSource = listSubjects;
             }
-       
+            ComboBoxDay.ItemsSource = listDays;
+            ComboBoxClass.ItemsSource = listClasses;
+
             if (id.HasValue)
             {
                 try
@@ -185,7 +214,9 @@ namespace TimetableView
                     ComboBoxGroups.SelectedItem = SetGroupValue(groupId);
                     ComboBoxClassrooms.SelectedItem = SetClassroomValue(classroomId);
                     ComboBoxSubject.SelectedItem = SetSubjectValue(subjectId);
-                    //дописать день и пару
+                    ComboBoxDay.SelectedItem = SetDayValue(day);
+                    ComboBoxClass.SelectedItem = SetClassValue(classs);
+
                     var view = logicTimetable.Read(new TimetableBindingModel { Id = id })?[0];
                     if (view != null)
                     {
@@ -243,6 +274,30 @@ namespace TimetableView
                 if ((item as SubjectViewModel).Id == value)
                 {
                     return item as SubjectViewModel;
+                }
+            }
+            return null;
+        }
+
+        private string SetDayValue(string value)
+        {
+            foreach (var item in ComboBoxDay.Items)
+            {
+                if (item as string == value)
+                {
+                    return item as string;
+                }
+            }
+            return null;
+        }
+
+        private int? SetClassValue(int value)
+        {
+            foreach (var item in ComboBoxClass.Items)
+            {
+                if (item as int? == value)
+                {
+                    return item as int?;
                 }
             }
             return null;

@@ -99,7 +99,12 @@ namespace TimetableView
             {
                 DataGridPlans.ItemsSource = list;
                 DataGridPlans.Columns[0].Visibility = Visibility.Hidden;
-                //DataGridPlans.Columns[5].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[3].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[5].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[7].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[8].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[10].Visibility = Visibility.Hidden;
+                DataGridPlans.Columns[12].Visibility = Visibility.Hidden;
             }
         }
 

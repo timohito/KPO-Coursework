@@ -210,7 +210,7 @@ namespace TimetableDatabaseImplement.Implements
             Timetable.LectorSubjectId = (int)model.LectorSubjectId;
             Timetable.LectorSubject_LectorId = (int)model.LectorSubject_LectorId;
             Timetable.LectorSubject_SubjectId = (int)model.LectorSubject_SubjectId;
-            Timetable.Day = (int)model.Day;
+            Timetable.Day = model.Day;
             Timetable.Class = (int)model.Class;
 
 

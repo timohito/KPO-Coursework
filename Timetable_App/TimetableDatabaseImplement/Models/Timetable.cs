@@ -19,7 +19,7 @@ namespace TimetableDatabaseImplement.Models
         public int LectorSubject_LectorId { get; set; }
         public int LectorSubject_SubjectId { get; set; }
         public virtual LectorSubject LectorSubject { get; set; }
-        public int Day { get; set; }
+        public string Day { get; set; }
         public int Class { get; set; }
     }
 }
