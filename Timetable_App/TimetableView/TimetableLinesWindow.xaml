@@ -7,10 +7,27 @@
         mc:Ignorable="d"
         Title="Расписание" MinHeight="180" MinWidth="270" Height="359" Width="749" Loaded="TimetableLines_Loaded">
     <Grid>
-        <DataGrid x:Name="DataGridPlans" HorizontalAlignment="Left" Height="343" VerticalAlignment="Center" Width="588" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
-        <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,152,0,0" Click="ButtonAdd_Click"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="204" Margin="0,0,0,0">
+            <StackPanel Width="69" Height="29">
+                <Label Content="Группа" Width="70"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Width="111">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="101">
+                    <ComboBox x:Name="ComboBoxClassrooms" Margin="10">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Number}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+        <DataGrid x:Name="DataGridPlans" HorizontalAlignment="Left" Height="309" VerticalAlignment="Top" Width="588" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True" Margin="0,34,0,0"/>
+        <Button x:Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,150,0,0" Click="ButtonAdd_Click"/>
         <Button x:Name="ButtonUpd" Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,190,0,0" Click="ButtonUpd_Click"/>
-        <Button x:Name="ButtonDel" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,229,0,0" Click="ButtonDel_Click"/>
-        <Button x:Name="ButtonRef" Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,272,0,0" Click="ButtonRef_Click"/>
+        <Button x:Name="ButtonDel" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,230,0,0" Click="ButtonDel_Click"/>
+        <Button x:Name="ButtonRef" Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="631,270,0,0" Click="ButtonRef_Click"/>
     </Grid>
 </Window>
