@@ -32,11 +32,15 @@ namespace TimetableBusinessLogic.BusinessLogics
 			{
 				GroupId = model.GroupId,
 				ClassroomId = model.ClassroomId,
-				LectorSubjectId = model.LectorSubjectId
+				LectorSubjectId = model.LectorSubjectId,
+				LectorSubject_LectorId = model.LectorSubject_LectorId,
+				LectorSubject_SubjectId = model.LectorSubject_LectorId,
+				Day = model.Day,
+				Class = model.Class,
 			});
 			if (element != null && element.Id != model.Id)
 			{
-				throw new Exception("Уже есть расписание с такими данными");
+				throw new Exception("Уже есть запись с такими данными");
 			}
 			if (model.Id.HasValue)
 			{
@@ -56,5 +60,11 @@ namespace TimetableBusinessLogic.BusinessLogics
 			}
 			_timetableStorage.Delete(model);
 		}
-    }
+
+        public int FindLectorSubjectIdByForeignKeys(int LId, int SId)
+        {
+			return _timetableStorage.FindLectorSubjectIdByForeignKeys(LId, SId);
+		}
+
+	}
 }

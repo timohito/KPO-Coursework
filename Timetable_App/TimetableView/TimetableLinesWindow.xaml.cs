@@ -29,9 +29,6 @@ namespace TimetableView
         public IUnityContainer Container { get; set; }
         private readonly TimetableLogic logic;
 
-        public string Login { set { login = value; } }
-
-        private string login;
         public TimetableLinesWindow(TimetableLogic logic)
         {
             InitializeComponent();
@@ -42,7 +39,6 @@ namespace TimetableView
         {
             var window = Container.Resolve<TimetableLineWindow>();
 
-            //window.Login = login;
 
             if (window.ShowDialog().Value)
             {
@@ -57,7 +53,7 @@ namespace TimetableView
                 var window = Container.Resolve<TimetableLineWindow>();
                 //window.Login = login;
                 var record = (TimetableViewModel)DataGridPlans.SelectedCells[0].Item;
-                //window.Id = record.Id;
+                window.Id = record.Id.Value;
                 if (window.ShowDialog().Value)
                 {
                     LoadData();

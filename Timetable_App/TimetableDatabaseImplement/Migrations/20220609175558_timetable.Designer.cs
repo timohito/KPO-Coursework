@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimetableDatabaseImplement;
 
 namespace TimetableDatabaseImplement.Migrations
 {
     [DbContext(typeof(TimetableDatabase))]
-    partial class TimetableDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20220609175558_timetable")]
+    partial class timetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,12 +160,6 @@ namespace TimetableDatabaseImplement.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("LectorSubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LectorSubject_LectorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LectorSubject_SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

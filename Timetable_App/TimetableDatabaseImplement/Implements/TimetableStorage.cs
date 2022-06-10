@@ -31,9 +31,15 @@ namespace TimetableDatabaseImplement.Implements
                     LectorSubjectId = rec.LectorSubjectId,
                     ClassroomId = rec.ClassroomId,
                     GroupId = rec.GroupId,
+                    Day = rec.Day,
+                    Class = rec.Class,
                     LectorSubject_LectorId = rec.LectorSubject.LectorId,
                     LectorSubject_SubjectId = rec.LectorSubject.SubjectId,
-                    LectorName = rec.LectorSubject.Lector.Name //?
+                    LectorName = rec.LectorSubject.Lector.Name, //?
+                    SubjectName = rec.LectorSubject.Subject.Name,
+                    ClassroomNumber = rec.Classroom.Number,
+                    GroupName = rec.Group.Name,
+                    //LectorSubjects = rec.LectorSubjects.ToDictionary(recRC => recRC.CosmeticId, recRC => (recRC.Cosmetic?.CosmeticName, recRC.Count)),
                 })
                 .ToList();
             }
@@ -61,8 +67,14 @@ namespace TimetableDatabaseImplement.Implements
                     LectorSubjectId = rec.LectorSubjectId,
                     ClassroomId = rec.ClassroomId,
                     GroupId = rec.GroupId,
+                    Day = rec.Day,
+                    Class = rec.Class,
                     LectorSubject_LectorId = rec.LectorSubject.LectorId,
                     LectorSubject_SubjectId = rec.LectorSubject.SubjectId,
+                    LectorName = rec.LectorSubject.Lector.Name, //?
+                    SubjectName = rec.LectorSubject.Subject.Name,
+                    ClassroomNumber = rec.Classroom.Number,
+                    GroupName = rec.Group.Name,
                 })
                 .ToList();
             }
@@ -91,8 +103,14 @@ namespace TimetableDatabaseImplement.Implements
                     LectorSubjectId = Timetable.LectorSubjectId,
                     ClassroomId = Timetable.ClassroomId,
                     GroupId = Timetable.GroupId,
+                    Day = Timetable.Day,
+                    Class = Timetable.Class,
                     LectorSubject_LectorId = Timetable.LectorSubject.LectorId,
                     LectorSubject_SubjectId = Timetable.LectorSubject.SubjectId,
+                    LectorName = Timetable.LectorSubject.Lector.Name, //?
+                    SubjectName = Timetable.LectorSubject.Subject.Name,
+                    ClassroomNumber = Timetable.Classroom.Number,
+                    GroupName = Timetable.Group.Name,
                 } : null;
             }
         }
@@ -101,19 +119,21 @@ namespace TimetableDatabaseImplement.Implements
         {
             using (var context = new TimetableDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        CreateModel(model, new Timetable(), context);
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                //using (var transaction = context.Database.BeginTransaction())
+                //{
+                //    try
+                //    {
+                //        context.Timetables.Add(CreateModel(model, new Timetable(), context));
+                //        transaction.Commit();
+                //    }
+                //    catch
+                //    {
+                //        transaction.Rollback();
+                //        throw;
+                //    }
+                //}
+                context.Timetables.Add(CreateModel(model, new Timetable(), context));
+                context.SaveChanges();
             }
         }
 
@@ -163,12 +183,47 @@ namespace TimetableDatabaseImplement.Implements
 
         private Timetable CreateModel(TimetableBindingModel model, Timetable Timetable, TimetableDatabase context)
         {
-            Timetable.GroupId= (int)model.GroupId;
+            var foundRecsByClassroomClassDay = context.Timetables.Where(rec => rec.ClassroomId == model.ClassroomId &&
+            rec.Class == model.Class && rec.Day == model.Day).ToList();
+            var foundRecsByLectorClassDay = context.Timetables.Where(rec => rec.LectorSubject_LectorId == model.LectorSubject_LectorId &&
+            rec.Class == model.Class && rec.Day == model.Day).ToList();
+            var foundRecsByGroupClassDay = context.Timetables.Where(rec => rec.GroupId == model.GroupId &&
+            rec.Class == model.Class && rec.Day == model.Day).ToList();
+
+            if (foundRecsByClassroomClassDay.Count > 0)
+            {
+                throw new Exception("В аудитории уже проводится пара в данное время");
+            }
+
+            if (foundRecsByLectorClassDay.Count > 0)
+            {
+                throw new Exception("Преподаватель уже ведет пару у какой-то из групп в данное время");
+            }
+
+            if (foundRecsByGroupClassDay.Count > 0)
+            {
+                throw new Exception("У группы уже есть пара в данное время");
+            }
+
+            Timetable.GroupId = (int)model.GroupId;
             Timetable.ClassroomId = (int)model.ClassroomId;
             Timetable.LectorSubjectId = (int)model.LectorSubjectId;
+            Timetable.LectorSubject_LectorId = (int)model.LectorSubject_LectorId;
+            Timetable.LectorSubject_SubjectId = (int)model.LectorSubject_SubjectId;
+            Timetable.Day = (int)model.Day;
+            Timetable.Class = (int)model.Class;
 
 
             return Timetable;
+        }
+
+        public int FindLectorSubjectIdByForeignKeys(int LId, int SId)
+        {
+            using (var context = new TimetableDatabase())
+            {
+                var result = context.LectorSubjects.FirstOrDefault(rec => rec.LectorId == LId && rec.SubjectId == SId);
+                return result != null ? result.Id : throw new Exception("Преподаватель не ведет данную дисциплину");
+            }
         }
     }
 }

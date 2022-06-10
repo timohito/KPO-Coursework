@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableView"
         mc:Ignorable="d"
-        Title="Запись" Height="350" Width="400">
+        Title="Запись" Height="420" Width="400" Loaded="TimetableLineWindow_Loaded">
     <StackPanel>
-        <StackPanel Margin="25,6,8,0" HorizontalAlignment="Center" Height="192" Width="336">
+        <StackPanel Margin="25,6,8,0" HorizontalAlignment="Center" Height="352" Width="336">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Height="28">
                     <Label>Группа</Label>
@@ -26,12 +26,12 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="201" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="204" Margin="0,0,0,0">
                 <StackPanel Width="69" Height="29">
-                    <Label Content="Аудитория" Width="68"/>
+                    <Label Content="Аудитория" Width="70"/>
                 </StackPanel>
-                <StackPanel Margin="10,0,0,0" Width="128">
-                    <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="102">
+                <StackPanel Margin="10,0,0,0" Width="111">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="101">
                         <ComboBox x:Name="ComboBoxClassrooms" Margin="10">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -44,17 +44,72 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="264" Margin="0,0,0,0" Height="51">
-                <StackPanel Width="105" Height="51">
-                    <Label Content="Преподаватель&#xD;&#xA;-предмет" Width="97" Height="76"/>
+                <StackPanel Width="96" Height="29">
+                    <Label Content="Преподаватель" Width="95"/>
                 </StackPanel>
                 <StackPanel Margin="10,0,0,0" Width="117">
                     <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="102">
-                        <TextBox x:Name="TextBoxLectorSubject"/>
+                        <ComboBox x:Name="ComboBoxLector" Margin="10">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </Border>
                 </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="264" Margin="0,0,0,0" Height="51">
+                <StackPanel Width="96" Height="29">
+                    <Label Content="  Предмет" Width="66"/>
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0" Width="117">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="102">
+                        <ComboBox x:Name="ComboBoxSubject" Margin="10">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="264" Margin="0,0,0,0" Height="51">
+                <StackPanel Width="96" Height="29">
+                    <Label Content="        День" Width="66"/>
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0" Width="117">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="102">
+                        <ComboBox x:Name="ComboBoxDay" Margin="10">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Day}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="264" Margin="0,0,0,0" Height="51">
+                <StackPanel Width="96" Height="29">
+                    <Label Content="        Пара" Width="66"/>
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0" Width="117">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="4" Width="102">
+                        <ComboBox x:Name="ComboBoxClass" Margin="10">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Class}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="48,0,47,0">
-                <Button Margin="10" Padding="5" x:Name="ButtonEnter" Click="ButtonSave_Click" Content="Сохранить"/>
+                <Button Margin="10" Padding="5" x:Name="ButtonEnter" Click="buttonSave_Click" Content="Сохранить"/>
                 <Button Margin="10" Padding="5" x:Name="ButtonCancel" Click="ButtonCancel_Click" Content="Отмена"/>
             </StackPanel>
         </StackPanel>
