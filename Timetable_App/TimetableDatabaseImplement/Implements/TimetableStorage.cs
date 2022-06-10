@@ -59,7 +59,7 @@ namespace TimetableDatabaseImplement.Implements
                 .Include(rec => rec.LectorSubject)
                 .ThenInclude(rec => rec.Subject)
                 .Include(rec => rec.LectorSubject)
-                .ThenInclude(rec => rec.Lector)
+                .ThenInclude(rec => rec.Lector).Where(rec => rec.GroupId == model.GroupId)
                 .ToList()
                 .Select(rec => new TimetableViewModel //?
                 {

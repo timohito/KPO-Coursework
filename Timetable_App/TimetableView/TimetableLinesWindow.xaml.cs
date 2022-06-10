@@ -28,11 +28,28 @@ namespace TimetableView
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly TimetableLogic logic;
+        private readonly GroupLogic logicGroup;
 
-        public TimetableLinesWindow(TimetableLogic logic)
+        public int Id { set { id = value; } }
+
+        private int? id;
+
+        public int GroupId
+        {
+            get { return (ComboBoxGroups.SelectedItem as GroupViewModel).Id.Value; }
+            set
+            {
+                groupId = value;
+            }
+        }
+
+        private int groupId;
+
+        public TimetableLinesWindow(TimetableLogic logic, GroupLogic groupLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.logicGroup = groupLogic;
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -94,7 +111,7 @@ namespace TimetableView
 
         private void LoadData()
         {
-            var list = logic.Read(null);
+            var list = logic.Read(new TimetableBindingModel { GroupId = (ComboBoxGroups.SelectedItem as GroupViewModel).Id.Value });
             if (list != null)
             {
                 DataGridPlans.ItemsSource = list;
@@ -110,6 +127,29 @@ namespace TimetableView
 
         private void TimetableLines_Loaded(object sender, RoutedEventArgs e)
         {
+            ComboBoxGroups.ItemsSource = logicGroup.Read(null);
+            ComboBoxGroups.SelectedIndex = 0;
+            if (id.HasValue)
+            {
+                try
+                {
+                    ComboBoxGroups.SelectedItem = SetValue(groupId);
+                    var view = logic.Read(new TimetableBindingModel { Id = id })?[0];
+                    if (view != null)
+                    {
+                        ComboBoxGroups.SelectedItem = view.GroupName;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            //if (listGroups != null)
+            //{
+            //    ComboBoxGroups.ItemsSource = listGroups;
+            //}
+            //ComboBoxGroups.SelectedIndex = 0;
             LoadData();
         }
 
@@ -161,6 +201,23 @@ namespace TimetableView
                 }
             }
             return null;
+        }
+
+        private GroupViewModel SetValue(int value)
+        {
+            foreach (var item in ComboBoxGroups.Items)
+            {
+                if ((item as GroupViewModel).Id == value)
+                {
+                    return item as GroupViewModel;
+                }
+            }
+            return null;
+        }
+
+        private void ComboBoxGroups_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadData();
         }
     }
 }
