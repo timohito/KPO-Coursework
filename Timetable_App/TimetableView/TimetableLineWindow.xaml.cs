@@ -76,12 +76,12 @@ namespace TimetableView
 
         private int subjectId;
 
-        public string Day
+        public int? Day
         {
-            get { return (ComboBoxDay.SelectedItem as int?); }
+            get { return SetDayValueToInt(ComboBoxDay.SelectedItem as string); }
             set
             {
-                day = value;
+                day = value.Value;
             }
         }
 
@@ -147,7 +147,7 @@ namespace TimetableView
                     LectorSubject_LectorId = LectorId,
                     LectorSubject_SubjectId = SubjectId,
                     LectorSubjectId = LectorSubjectId,
-                    Day = day,
+                    Day = Day.Value,
 
                     //Class = 
                 });
@@ -269,29 +269,49 @@ namespace TimetableView
             return null;
         }
 
-        private int? SetDayValue(string value)
+        private string SetDayValue(int value)
         {
             foreach (var item in ComboBoxDay.Items)
             {
-                if (item as string == value)
+                if (item as int? == value)
                 {
-                    switch(item as string)
+                    switch(item as int?)
                     {
-                        case "Понедельник":
-                            return 1;
-                        case "Вторник":
-                            return 2;
-                        case "Среда":
-                            return 3;
-                        case "Четверг":
-                            return 4;
-                        case "Пятница":
-                            return 5;
-                        case "Суббота":
-                            return 6;
+                        case 1:
+                            return "Понедельник";
+                        case 2:
+                            return "Вторник";
+                        case 3:
+                            return "Среда";
+                        case 4:
+                            return "Четверг";
+                        case 5:
+                            return "Пятница";
+                        case 6:
+                            return "Суббота";
                     }
                 }
 
+            }
+            return null;
+        }
+
+        private int? SetDayValueToInt(string value)
+        {
+            switch (value)
+            {
+                case "Понедельник":
+                    return 1;
+                case "Вторник":
+                    return 2;
+                case "Среда":
+                    return 3;
+                case "Четверг":
+                    return 4;
+                case "Пятница":
+                    return 5;
+                case "Суббота":
+                    return 6;
             }
             return null;
         }
