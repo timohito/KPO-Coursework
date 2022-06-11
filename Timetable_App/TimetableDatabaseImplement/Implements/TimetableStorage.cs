@@ -153,7 +153,8 @@ namespace TimetableDatabaseImplement.Implements
                         }
 
                         CreateModel(model, element, context);
-                        transaction.Commit();
+                        context.SaveChanges();
+                        transaction.Commit();                      
                     }
                     catch
                     {

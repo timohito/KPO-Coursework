@@ -71,6 +71,12 @@ namespace TimetableView
                 //window.Login = login;
                 var record = (TimetableViewModel)DataGridPlans.SelectedCells[0].Item;
                 window.Id = record.Id.Value;
+                window.GroupId = record.GroupId;
+                window.ClassroomId = record.ClassroomId;
+                window.Class = record.Class;
+                window.Day = record.Day;
+                window.LectorId = record.LectorSubject_LectorId;
+                window.SubjectId = record.LectorSubject_SubjectId;
                 if (window.ShowDialog().Value)
                 {
                     LoadData();
@@ -145,11 +151,6 @@ namespace TimetableView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            //if (listGroups != null)
-            //{
-            //    ComboBoxGroups.ItemsSource = listGroups;
-            //}
-            //ComboBoxGroups.SelectedIndex = 0;
             LoadData();
         }
 

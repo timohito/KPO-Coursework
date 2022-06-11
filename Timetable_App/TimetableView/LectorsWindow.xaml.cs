@@ -98,6 +98,7 @@ namespace TimetableView
                 {
                     dataGrid.ItemsSource = list;
                     dataGrid.Columns[0].Visibility = Visibility.Hidden;
+                    dataGrid.Columns[2].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
